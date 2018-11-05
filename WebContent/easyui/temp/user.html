@@ -1,0 +1,120 @@
+<div id="userDataGrid"></div>
+    <script>
+    	$(function(){
+			$('#userDataGrid').datagrid({
+					url:'temp/datagrid.php',   //调用的数据源
+					rownumbers:true,	   //设置为 true，则显示带有行号的列。
+					pagination:true,	   //在数据网格（datagrid）底部显示分页工具栏。
+					striped:true,		   //即奇偶行使用不同背景色
+					fitColumns:true,	   //列自适应
+					singleSelect:true, 	   //单选行
+					pageSize:10,   
+					fit:true, 				//datagrid自适应高度
+					columns:[[
+						{ checkbox:true},
+						{ field:'uid',title:'用户ID',width:100,sortable:true},
+						{ field:'name',title:'用户名称',width:100,sortable:true},
+						{ field:'pwd',title:'用户密码',width:100},
+						{ field:'sex',title:'性别',width:100},
+						{ field:'email',title:'邮箱',width:100},
+						{ field:'address',title:'地址',width:100}
+					]],
+					toolbar: [{
+						iconCls: 'icon-add',
+						text:"添加用户",
+						handler: function(){
+							var addUser = $('<div>').dialog({
+									//closed: false,   //改为true  默认就是看不到窗口
+									modal:true,        //对话框的底层是不可以进行操作的。	
+									href:'temp/userAdd.html',				
+									title: "添加信息",
+									width: 400,
+									top:170,
+									buttons: [{
+										text: '确定',
+										iconCls: 'icon-ok',
+										handler: function(){
+											$.messager.show({
+												   title:'提示',
+												   msg:'用户信息修改成功'
+											});
+											addUser.dialog("close");	
+										}
+									}, {
+										text: '取消',
+										iconCls: 'icon-cancel',
+										handler: function () {
+											addUser.dialog('close');                    
+										}
+									}]
+							});
+						}
+					},'-',{
+						iconCls: 'icon-edit',
+						text:"修改用户",
+						handler: function(){
+							var rows = $('#userDataGrid').datagrid('getChecked');
+							//alert(item.productid);return;
+							if(rows.length == 1){
+								
+								var rowIndex = $('#userDataGrid').datagrid('getRowIndex', rows[0]);
+								var userEdit = $('<div>').dialog({
+									href:'temp/userEdit.html',
+									closed: false,
+									width: 400,
+									top:170,
+									modal:true,
+									title: "修改用户",
+									buttons: [{
+										text: '确定',
+										iconCls: 'icon-ok',
+										handler: function(){
+											$('#user-form-Edit').form('submit', {
+												url:'',
+												success:function(data){
+													if(data){
+														userEdit.dialog('close');
+														$.messager.show({
+															 title:'提示',
+															 msg:'用户信息修改成功'
+														});
+														
+													}else{
+														$.messager.alert('信息提示','提交失败！','info');
+													}
+												}
+											});
+										}
+									}, {
+										text: '取消',
+										iconCls: 'icon-cancel',
+										handler: function () {
+											userEdit.dialog('close');                    
+										}
+									}],
+									onClose : function() {
+											$(this).dialog('destroy');
+									},
+									onLoad : function() {
+										$('#user-form-Edit').form('load',{
+											id:rows[0].id,
+											pwd: rows[0].pwd,
+											name:rows[0].name,
+											email : rows[0].email,
+											address : rows[0].address
+										});
+									}
+								});
+							}else{
+								$.messager.alert('提示', '请勾选一条要编辑的数据','info');	
+							}
+			
+						}
+					},'-',{
+						iconCls: 'icon-remove',
+						text:"删除用户",
+						handler: function(){alert('remove')}
+					}]
+			});	
+		})
+    </script>

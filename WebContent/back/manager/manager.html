@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>聊天室后台界面</title>
+<script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../js/backmanager.js"></script>
+<style type="text/css">
+	body{
+		background: url("../../images/bg.jpg") no-repeat;
+		background-size:cover;
+	}
+</style>
+</head>
+<body>
+	<form action="" id="myform" style="text-align: center;">
+		<input type="hidden" name="op" value="addDept">管理员账号：<input
+			type="text" name="deptno" id="managerName" />管理员密码：<input type="text"
+			name="deptno" id="managerPwd" /><input type="button" value="添加管理员" onclick="addManager()">
+	</form>
+
+	<br></br>
+
+	<table width="80%" align="center" border="1px">
+		<thead>
+			<tr>
+				<th>序号</th>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+
+		<tbody id="usersInfo" align="center">
+		</tbody>
+	</table>
+</body>
+</html>

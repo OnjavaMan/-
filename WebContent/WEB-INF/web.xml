@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>TalkRoom</display-name>
+  
+  <!-- 登陆和注册服务器 -->
+  <servlet>
+	<servlet-name>LoginServlet</servlet-name><!-- 3 -->
+	<servlet-class>com.zwq.servlet.LoginServlet</servlet-class><!-- 4 -->
+  </servlet>
+  
+  <servlet-mapping>
+	<servlet-name>LoginServlet</servlet-name><!-- 2 -->
+	<url-pattern>/loginServlet</url-pattern>  <!-- 1 -->
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>DoLoginServlet</servlet-name><!-- 3 -->
+	<servlet-class>com.zwq.servlet.doLoginServlet</servlet-class><!-- 4 -->
+  </servlet>
+  
+  <servlet-mapping>
+	<servlet-name>DoLoginServlet</servlet-name><!-- 2 -->
+	<url-pattern>/dologinServlet</url-pattern>  <!-- 1 -->
+  </servlet-mapping>
+  
+  <!-- 登录过滤器-->
+  <filter>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<filter-class>com.zwq.filter.checkLogfilter</filter-class>
+  	<init-param>
+  		<param-name>errorPage</param-name>
+  		<param-value>login.html</param-value>
+  	</init-param>
+  	<!-- 不用监听的文件 -->
+  	<init-param>
+  		<param-name>pasePage</param-name>
+  		<param-value>back/manager/login.html--/back/manager/code.jsp--/back/manager/city.xml</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>CheckLoginFilter</filter-name>
+  	<url-pattern>/talk.html</url-pattern>
+  </filter-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

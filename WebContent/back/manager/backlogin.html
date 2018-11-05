@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../../easyui/css/easyui.css" />
+<link rel="stylesheet" type="text/css" href="../../easyui/css/wu.css" />
+<link rel="stylesheet" type="text/css" href="../../easyui/css/icon.css" />
+<script type="text/javascript" src="../../js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../../js/backlog.js"></script>
+<script type="text/javascript" src="../../easyui/js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../../easyui/js/easyui-lang-zh_CN.js"></script>
+<style type="text/css">
+body{
+		background: url("../../images/bg.jpg") no-repeat;
+		background-size:cover;
+	}
+	.loginWindow{
+		position:absolute;
+		left:50%;
+		top:50%;
+		-webkit-transform:translate(-50%,-50%);
+		-moz-transform:translate(-50%,-50%);
+		-o-transform:translate(-50%,-50%);
+		-ms-transform:translate(-50%,-50%);
+		transform:translate(-50%,-50%);
+	}
+</style>
+<title>网络后台登录系统</title>
+</head>
+<body>
+	<div id="LoginWindow" class="loginWindow">
+	<div class="easyui-panel" title="聊天后台管理" style="width:360px;height:240px;padding:10px;">
+		<form action=""  id="backlog">
+		<div>
+			<label>账号：</label>
+			<input  class="easyui-textbox" type="text" placeholder="请输入用户名" id="login_name" name="name">
+			<a href="javascript:changeWindow('RegWindow')" title="创建一个新账号">注册新账号</a><br><br>
+		</div>
+		<div>
+			<label>密码：</label>
+			<input class="easyui-textbox" type="password" placeholder="请输入密码" id="login_pwd" name="pwd"><br><br>
+		</div>
+		<div>
+			<label>验证码：</label>
+			<input class="easyui-textbox" type="text" style="width:20%;" id="login_code" name="code">
+			<img src="code.jsp" style="float:right;margin-right:95px;margin-top:-3px;" onclick="this.src='code.jsp?d='+new Date()" title="点击刷新"/>
+		</div>
+		<span id="loginfo"></span>
+		</form>
+		
+		<div style="margin-top:30px;text-align:center">
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="Login()">登录</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm('backlog')">重置</a>
+		</div>
+	
+	</div>
+</div> 
+</body>
+</html>

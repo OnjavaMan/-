@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>网上聊天室</title>
+<script type="text/javascript" src="js/talk.js"></script>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<style type="text/css">
+body {
+	background: url("images/bg.jpg") no-repeat;
+	background-size: cover;
+}
+
+* {
+	margin: 0 auto;
+	padding: 0px;
+	font-size: 12px;
+	font-family: "微软雅黑";
+	line-height: 26px;
+}
+
+#bigbox {
+	margin: 0px auto;
+	padding: 0px;
+	margin-top:3%;
+	width: 906px;
+}
+
+#bigbox #left {
+	width: 700px;
+	height: 600px;
+	border: 1px solid red;
+	float: left;
+	overflow: auto;
+}
+
+#bigbox #right {
+	width: 200px;
+	float: left;
+	border: 1px solid red;
+	height: 600px;
+	overflow: auto;
+	margin-left: 2px;
+}
+
+#bigbox #main {
+	clear: both;
+	width: 904px;
+	border: 1px solid red;
+}
+
+#content {
+	width: 600px;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+	<div id="bigbox">
+		<div id="talkInfo">
+		<!-- 聊天信息 -->
+			<div id="left" >
+			
+			</div>
+			
+			<!-- 用户 信息-->
+			<div id="right">
+			
+			</div>
+		</div>
+		<div id="main">
+			<center>
+				<form action="" method="post" id="myform">
+					说：<input type="text" name="content" id="content" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value=" &nbsp;发送&nbsp; "onclick="addContent()" />&nbsp;&nbsp; 
+					<input type="button" value=" &nbsp;我闪 &nbsp; " onclick="loginOut()" />
+				</form>
+			</center>
+		</div>
+	</div>
+</body>
+</html>
